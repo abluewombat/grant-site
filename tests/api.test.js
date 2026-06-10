@@ -38,21 +38,21 @@ test('inquiry endpoint rejects incomplete submissions', async () => {
 
 test('shared inquiry validation accepts a complete submission', () => {
   const inquiry = normalizeInquiry({
-    name: 'Rebecca Kyles',
+    name: 'Rebbecca Kyles',
     organization: 'Community Impact Network',
-    email: 'Rebecca@example.org',
+    email: 'rebbecca@example.org',
     support: 'Proposal development',
     timeline: '1-3 months',
     message: 'We need a funding strategy for a new community-based program.',
   })
 
   assert.deepEqual(validateInquiry(inquiry), [])
-  assert.equal(inquiry.email, 'rebecca@example.org')
+  assert.equal(inquiry.email, 'rebbecca@example.org')
 })
 
 test('email content escapes visitor-provided HTML', () => {
   const email = buildInquiryEmail({
-    name: '<Rebecca>',
+    name: '<Rebbecca>',
     organization: 'Community & Co.',
     email: 'rebecca@example.org',
     support: 'Proposal development',
@@ -79,7 +79,7 @@ test('Vercel inquiry function reports missing email configuration', async () => 
   const request = {
     method: 'POST',
     body: {
-      name: 'Rebecca Kyles',
+      name: 'Rebbecca Kyles',
       organization: 'Community Impact Network',
       email: 'rebecca@example.org',
       support: 'Proposal development',

@@ -30,7 +30,7 @@ app.post('/api/inquiries', async (request, response) => {
 
   if (inquiry.website) {
     return response.status(201).json({
-      message: 'Thank you. Your project details are on their way to Rebecca.',
+      message: 'Thank you. Your project details are on their way to Rebbecca.',
     })
   }
 
@@ -47,7 +47,7 @@ app.post('/api/inquiries', async (request, response) => {
   await appendFile(submissionsPath, `${JSON.stringify(record)}\n`, 'utf8')
 
   return response.status(201).json({
-    message: 'Thank you. Your project details are on their way to Rebecca.',
+    message: 'Thank you. Your project details are on their way to Rebbecca.',
     inquiryId: record.id,
   })
 })
