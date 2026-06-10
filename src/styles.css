@@ -1150,9 +1150,18 @@ blockquote footer {
 }
 
 .inquiry-form {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 20px;
+}
+
+.honeypot {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
 }
 
 .form-grid {

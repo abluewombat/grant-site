@@ -9,6 +9,7 @@ const initialForm = {
   support: '',
   timeline: '',
   message: '',
+  website: '',
 }
 
 const form = reactive({ ...initialForm })
@@ -50,6 +51,11 @@ async function submitInquiry() {
 
 <template>
   <form class="inquiry-form" novalidate @submit.prevent="submitInquiry">
+    <label class="honeypot" aria-hidden="true">
+      <span>Website</span>
+      <input v-model="form.website" type="text" name="website" tabindex="-1" autocomplete="off" />
+    </label>
+
     <div class="form-grid">
       <label>
         <span>Your name</span>
