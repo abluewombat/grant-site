@@ -79,12 +79,12 @@ async function submitInquiry() {
       <label>
         <span>What support do you need?</span>
         <select v-model="form.support">
-          <option value="" disabled>Select a service</option>
-          <option>Grant strategy & research</option>
-          <option>Proposal development</option>
-          <option>Grant systems & compliance</option>
-          <option>Development consulting</option>
-          <option>Not sure yet</option>
+          <option value="" disabled>Choose what sounds closest</option>
+          <option>Not sure where to start</option>
+          <option>Find funding opportunities</option>
+          <option>Write or strengthen a proposal</option>
+          <option>Build grant systems and reporting</option>
+          <option>Development and donor strategy</option>
         </select>
         <small v-if="fieldErrors.support">{{ fieldErrors.support }}</small>
       </label>
@@ -106,13 +106,13 @@ async function submitInquiry() {
       <textarea
         v-model="form.message"
         rows="5"
-        placeholder="What are you building, and where does funding feel stuck?"
+        placeholder="What does your nonprofit do, and where does funding feel stuck?"
       />
       <small v-if="fieldErrors.message">{{ fieldErrors.message }}</small>
     </label>
 
     <button class="button button-coral form-submit" type="submit" :disabled="status === 'submitting'">
-      {{ status === 'submitting' ? 'Sending...' : 'Start the conversation' }}
+      {{ status === 'submitting' ? 'Sending...' : 'Send Rebbecca a note' }}
       <ArrowIcon v-if="status !== 'submitting'" />
     </button>
 

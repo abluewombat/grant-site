@@ -4,43 +4,77 @@ import ArrowIcon from './components/ArrowIcon.vue'
 import CheckIcon from './components/CheckIcon.vue'
 import InquiryForm from './components/InquiryForm.vue'
 import ReadinessQuiz from './components/ReadinessQuiz.vue'
-import SparkIcon from './components/SparkIcon.vue'
 
 const menuOpen = ref(false)
 const activeSection = ref('home')
 const scrolled = ref(false)
+const contactVisible = ref(false)
+const heroVisible = ref(true)
 
 const navItems = [
-  { label: 'Home', href: '#home', icon: 'home' },
-  { label: 'Services', href: '#services', icon: 'grid' },
-  { label: 'About', href: '#about', icon: 'person' },
-  { label: 'Contact', href: '#contact', icon: 'mail' },
+  { label: 'Home', href: '#home' },
+  { label: 'How I help', href: '#services' },
+  { label: 'About me', href: '#about' },
+  { label: 'Let’s talk', href: '#contact' },
+]
+
+const familiarMoments = [
+  {
+    title: 'You found a grant, but the application feels like another language.',
+    label: 'The opportunity is there',
+  },
+  {
+    title: 'Your team is already doing three jobs each, and deadlines keep moving.',
+    label: 'Capacity is tight',
+  },
+  {
+    title: 'You know the work matters, but worry larger nonprofits sound more “fundable.”',
+    label: 'Your story needs room',
+  },
 ]
 
 const services = [
   {
+    question: 'Not sure where to begin?',
+    title: 'Find a practical funding path',
+    copy: 'I’ll help you understand what is grant-ready now, what needs attention, and which opportunities are worth your limited time.',
+    tags: ['Readiness review', 'Funder research', 'Grant roadmap'],
+  },
+  {
+    question: 'Found a grant you want to pursue?',
+    title: 'Turn your work into a clear proposal',
+    copy: 'I’ll help shape your program knowledge, outcomes, budget, and community impact into a proposal funders can understand and trust.',
+    tags: ['Narrative', 'Budget alignment', 'Submission support'],
+  },
+  {
+    question: 'Tired of chasing deadlines?',
+    title: 'Build systems your team can keep using',
+    copy: 'I’ll create a manageable approach to grant calendars, reporting, compliance, and post-award follow-through.',
+    tags: ['Grant calendar', 'Reporting', 'Compliance'],
+  },
+  {
+    question: 'Ready to grow beyond one grant?',
+    title: 'Strengthen your development strategy',
+    copy: 'I bring grant, donor, campaign, and board experience together so funding becomes more stable and less reactive.',
+    tags: ['Major gifts', 'Board support', 'Campaign planning'],
+  },
+]
+
+const processSteps = [
+  {
     number: '01',
-    title: 'Grant strategy & research',
-    copy: 'Build a practical funding roadmap around the opportunities most aligned with your mission, capacity, and timing.',
-    tags: ['Prospect research', 'Grant calendars', 'Readiness reviews'],
+    title: 'You tell me what’s going on',
+    copy: 'Tell me what your organization does, where funding feels stuck, and what your team can realistically take on.',
   },
   {
     number: '02',
-    title: 'Proposal development',
-    copy: 'Turn program expertise into clear, funder-ready narratives, budgets, attachments, and submission packages.',
-    tags: ['Government', 'Foundation', 'Corporate'],
+    title: 'I recommend a useful next step',
+    copy: 'No oversized package. I’ll be honest about what I think will help, what can wait, and where your effort is best spent.',
   },
   {
     number: '03',
-    title: 'Systems & compliance',
-    copy: 'Create reliable workflows for deadlines, reporting, post-award documentation, and audit-ready grant management.',
-    tags: ['Reporting', 'Workflows', 'Post-award support'],
-  },
-  {
-    number: '04',
-    title: 'Development counsel',
-    copy: 'Strengthen donor strategy, board engagement, stewardship, and campaign planning with an experienced partner.',
-    tags: ['Major gifts', 'Campaigns', 'Board partnership'],
+    title: 'I help you build what you need',
+    copy: 'You stay connected to the work while I bring structure, funder perspective, and momentum to the process.',
   },
 ]
 
@@ -72,12 +106,15 @@ const partners = [
 ]
 
 const outcomes = [
-  { value: '$2M+', label: 'New funding secured in one year' },
-  { value: '59%', label: 'Increase in overall funding' },
-  { value: '$7.7M', label: 'Capital campaign led' },
+  { value: '$2M+', label: 'new funding secured in one year' },
+  { value: '59%', label: 'increase in overall funding' },
+  { value: '$7.7M', label: 'capital campaign leadership' },
 ]
 
 let observer
+let contactObserver
+let heroObserver
+let handleScroll
 
 onMounted(() => {
   const sections = document.querySelectorAll('main section[id]')
@@ -92,14 +129,36 @@ onMounted(() => {
   )
   sections.forEach((section) => observer.observe(section))
 
-  const handleScroll = () => {
-    scrolled.value = window.scrollY > 24
+  const contactSection = document.querySelector('#contact')
+  contactObserver = new IntersectionObserver(
+    ([entry]) => {
+      contactVisible.value = entry.isIntersecting
+    },
+    { threshold: 0.05 },
+  )
+  if (contactSection) contactObserver.observe(contactSection)
+
+  const heroSection = document.querySelector('#home')
+  heroObserver = new IntersectionObserver(
+    ([entry]) => {
+      heroVisible.value = entry.isIntersecting
+    },
+    { threshold: 0.08 },
+  )
+  if (heroSection) heroObserver.observe(heroSection)
+
+  handleScroll = () => {
+    scrolled.value = window.scrollY > 20
   }
   window.addEventListener('scroll', handleScroll, { passive: true })
-  onBeforeUnmount(() => window.removeEventListener('scroll', handleScroll))
 })
 
-onBeforeUnmount(() => observer?.disconnect())
+onBeforeUnmount(() => {
+  observer?.disconnect()
+  contactObserver?.disconnect()
+  heroObserver?.disconnect()
+  window.removeEventListener('scroll', handleScroll)
+})
 
 function closeMenu() {
   menuOpen.value = false
@@ -109,11 +168,11 @@ function closeMenu() {
 <template>
   <div class="site-shell">
     <header class="site-header" :class="{ 'is-scrolled': scrolled }">
-      <a class="brand" href="#home" aria-label="Kyles Grant Studio home" @click="closeMenu">
-        <span class="brand-mark">K</span>
+      <a class="brand" href="#home" aria-label="Rebbecca Kyles home" @click="closeMenu">
+        <span class="brand-mark">RK</span>
         <span class="brand-copy">
-          <strong>Kyles</strong>
-          <small>Grant Studio</small>
+          <strong>Rebbecca Kyles</strong>
+          <small>Grant writing & nonprofit development</small>
         </span>
       </a>
 
@@ -124,7 +183,7 @@ function closeMenu() {
       </nav>
 
       <a class="button button-dark header-cta" href="#contact">
-        Start a project
+        Tell me what’s going on
         <ArrowIcon />
       </a>
 
@@ -139,106 +198,131 @@ function closeMenu() {
         <span />
       </button>
 
-      <div
-        v-if="menuOpen"
-        class="mobile-menu"
-        :class="{ 'is-open': menuOpen }"
-      >
+      <nav v-if="menuOpen" class="mobile-menu" aria-label="Mobile navigation">
         <a v-for="item in navItems" :key="item.href" :href="item.href" @click="closeMenu">
           {{ item.label }}
         </a>
-      </div>
+      </nav>
     </header>
 
     <main>
       <section id="home" class="hero section">
-        <div class="hero-orbit orbit-one" />
-        <div class="hero-orbit orbit-two" />
         <div class="hero-copy">
-          <p class="eyebrow eyebrow-pill"><SparkIcon /> Grant strategy for meaningful work</p>
-          <h1>
-            Your mission deserves
-            <em>funding that lasts.</em>
-          </h1>
+          <p class="eyebrow eyebrow-pill">Grant help for small and growing nonprofits</p>
+          <h1>Your work matters. <em>I help funders see why.</em></h1>
           <p class="hero-lede">
-            Kyles Grant Studio helps nonprofits turn powerful work into clear strategy,
-            compelling proposals, and trusted funder relationships.
+            I help grassroots and growing nonprofits navigate grants, tell their story
+            clearly, and approach larger funding opportunities with confidence.
           </p>
           <div class="hero-actions">
             <a class="button button-coral" href="#contact">
-              Tell me what you're building
+              Tell me about your nonprofit
               <ArrowIcon />
             </a>
-            <a class="text-link" href="#services">Explore services <ArrowIcon /></a>
+            <a class="text-link" href="#services">See how I can help <ArrowIcon /></a>
           </div>
-          <div class="hero-proof">
-            <div class="avatar-stack" aria-hidden="true">
-              <span>RK</span><span>18+</span><span>$</span>
-            </div>
-            <p><strong>18+ years</strong> helping mission-driven organizations grow.</p>
+          <div class="hero-reassurance">
+            <CheckIcon />
+            <p>
+              You do not need a development department, polished grant materials,
+              or years of fundraising experience to start.
+            </p>
           </div>
         </div>
 
-        <div class="hero-visual" aria-label="Grant strategy overview">
-          <div class="hero-card main-card">
-            <div class="card-topline">
-              <span>Funding roadmap</span>
-              <span class="status-dot">In progress</span>
-            </div>
-            <div class="roadmap-graphic">
-              <span class="roadmap-line" />
-              <div class="roadmap-point is-complete"><CheckIcon /><small>Discover</small></div>
-              <div class="roadmap-point is-complete"><CheckIcon /><small>Align</small></div>
-              <div class="roadmap-point is-active"><span>3</span><small>Develop</small></div>
-              <div class="roadmap-point"><span>4</span><small>Steward</small></div>
-            </div>
-            <div class="funding-match">
-              <div>
-                <small>Strongest opportunity</small>
-                <strong>Community impact grant</strong>
-              </div>
-              <span>94% match</span>
-            </div>
+        <figure class="hero-art">
+          <img
+            src="/bridge-community-funding.webp"
+            alt="An illustrated bridge connecting a neighborhood community center with a welcoming funding institution"
+          />
+          <figcaption>
+            <span class="caption-kicker">The bridge between</span>
+            <strong>the work your community knows</strong>
+            <span>and the story funders need to understand.</span>
+          </figcaption>
+          <div class="direct-badge">
+            <span class="direct-initials">RK</span>
+            <p><strong>You work directly with me.</strong> No agency handoff.</p>
           </div>
-
-          <div class="float-card float-card-top">
-            <span class="mini-icon"><SparkIcon /></span>
-            <div><strong>Story + strategy</strong><small>Built to reinforce each other</small></div>
-          </div>
-          <div class="float-card float-card-bottom">
-            <strong>$2M+</strong>
-            <span>new funding secured in one year</span>
-          </div>
-        </div>
+        </figure>
       </section>
 
-      <section class="trust-strip" aria-label="Core strengths">
-        <span>Grant writing</span>
+      <section class="welcome-strip" aria-label="How Rebbecca works">
+        <span>Plain-language guidance</span>
         <i />
-        <span>Funder research</span>
+        <span>Support scaled to your capacity</span>
         <i />
-        <span>Compliance</span>
-        <i />
-        <span>Major gifts</span>
-        <i />
-        <span>Campaign strategy</span>
+        <span>No grant experience required</span>
+      </section>
+
+      <section class="familiar section">
+        <div class="section-heading centered-heading">
+          <p class="eyebrow">If funding feels out of reach</p>
+          <h2>You may be doing strong work with a very small team.</h2>
+          <p>
+            Grant writing can make capable organizations feel unprepared. That does
+            not mean you are behind. It usually means you need a clear next step.
+          </p>
+        </div>
+
+        <div class="familiar-grid">
+          <article v-for="moment in familiarMoments" :key="moment.label">
+            <span>{{ moment.label }}</span>
+            <h3>{{ moment.title }}</h3>
+          </article>
+        </div>
+
+        <p class="reassurance-note">
+          I’ll meet you where you are, explain what funders are asking for,
+          and help you move forward without pretending your organization has unlimited time or staff.
+        </p>
+      </section>
+
+      <section class="bridge-story section">
+        <div class="bridge-story-copy">
+          <p class="eyebrow">I know both sides of the bridge</p>
+          <h2>Community work and institutional funding should not feel worlds apart.</h2>
+          <p>
+            I began my career in shelters and crisis programs, working directly
+            alongside people in vulnerable moments. Later, I led development teams,
+            managed government grants, supported multimillion-dollar budgets, and
+            built relationships with major donors and foundations.
+          </p>
+          <p>
+            That means I understand the work as well as the funding systems around it.
+            My role is to translate between the two without losing the heart of your mission.
+          </p>
+        </div>
+
+        <div class="translation-card">
+          <div>
+            <span>Your organization knows</span>
+            <strong>The people, the need, and what actually works.</strong>
+          </div>
+          <div class="translation-bridge" aria-hidden="true">
+            <span />
+            <small>I help connect the two</small>
+          </div>
+          <div>
+            <span>Funders need to see</span>
+            <strong>A clear plan, credible outcomes, and responsible stewardship.</strong>
+          </div>
+        </div>
       </section>
 
       <section id="services" class="services section">
         <div class="section-heading">
-          <div>
-            <p class="eyebrow">Ways to work together</p>
-            <h2>Good funding work starts <em>before</em> the application.</h2>
-          </div>
+          <p class="eyebrow">How I can help</p>
+          <h2>Start with the problem in front of you.</h2>
           <p>
-            From first funder list to final report, every engagement is designed to leave
-            your organization clearer, stronger, and more sustainable.
+            You do not need to know which service to request. Find the situation
+            that sounds familiar, and I can help identify the next step.
           </p>
         </div>
 
-        <div class="service-grid">
-          <article v-for="service in services" :key="service.number" class="service-card">
-            <div class="service-number">{{ service.number }}</div>
+        <div class="service-list">
+          <article v-for="service in services" :key="service.question" class="service-card">
+            <p class="service-question">{{ service.question }}</p>
             <h3>{{ service.title }}</h3>
             <p>{{ service.copy }}</p>
             <div class="service-tags">
@@ -248,27 +332,82 @@ function closeMenu() {
         </div>
       </section>
 
-      <section id="approach" class="approach section">
-        <div class="approach-copy">
-          <p class="eyebrow">A grounded approach</p>
-          <h2>Clarity for your team. Confidence for your funders.</h2>
-          <p class="approach-lede">
-            The strongest applications are an honest reflection of strong programs.
-            We work across the full picture: mission, outcomes, finances, people, and proof.
+      <section class="process section">
+        <div class="section-heading">
+          <p class="eyebrow">A low-pressure process</p>
+          <h2>First, you tell me what’s going on. Then I’ll tell you what I think will help.</h2>
+          <p>
+            Good support should make the work feel clearer, not add another layer of complexity.
           </p>
-          <ul class="check-list">
-            <li><CheckIcon /><span><strong>Listen first.</strong> Understand the work before shaping the pitch.</span></li>
-            <li><CheckIcon /><span><strong>Build together.</strong> Keep your team close to the strategy and story.</span></li>
-            <li><CheckIcon /><span><strong>Leave capacity behind.</strong> Create tools and systems your organization can keep using.</span></li>
-          </ul>
+        </div>
+
+        <ol class="process-list">
+          <li v-for="step in processSteps" :key="step.number">
+            <span>{{ step.number }}</span>
+            <div>
+              <h3>{{ step.title }}</h3>
+              <p>{{ step.copy }}</p>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <section id="readiness" class="readiness section">
+        <div class="readiness-copy">
+          <p class="eyebrow">Not sure if you’re ready?</p>
+          <h2>Take a quick, no-pressure readiness check.</h2>
+          <p>
+            Four questions can help identify whether your next step is pursuing
+            opportunities or strengthening the foundation first.
+          </p>
+          <p class="readiness-note">
+            There is no failing result. Knowing what needs attention is useful progress.
+          </p>
         </div>
         <ReadinessQuiz />
       </section>
 
-      <section class="impact section">
-        <div class="impact-intro">
-          <p class="eyebrow">Experience that translates</p>
-          <h2>Strategy backed by the realities of nonprofit leadership.</h2>
+      <section id="about" class="about section">
+        <div class="about-letter">
+          <span class="letter-label">A note from me</span>
+          <p class="letter-greeting">Hi, I’m Rebbecca.</p>
+          <blockquote>
+            “I believe smaller nonprofits deserve access to the same funding knowledge
+            and opportunities as organizations with large development departments.”
+          </blockquote>
+          <p class="signature">Rebbecca</p>
+        </div>
+
+        <div class="about-copy">
+          <p class="eyebrow">Experience without the intimidation</p>
+          <h2>I’ve sat beside clients, led nonprofit teams, and answered to funders.</h2>
+          <p class="large-copy">
+            For more than 18 years, I have worked across direct service, grant compliance,
+            fundraising, executive leadership, donor strategy, and organizational growth.
+          </p>
+          <p>
+            I know what it is like when the mission is urgent, the staff is stretched,
+            and the funding language does not sound like the real work. I also know how
+            government agencies, foundations, corporate partners, and major donors make decisions.
+          </p>
+          <p>
+            I use that experience to help smaller organizations compete with clarity and
+            confidence, while staying honest about their capacity and close to their community.
+          </p>
+          <a class="text-link" href="https://www.linkedin.com/in/beckykyles/" target="_blank" rel="noreferrer">
+            See my experience on LinkedIn <ArrowIcon />
+          </a>
+        </div>
+      </section>
+
+      <section class="proof section">
+        <div class="proof-intro">
+          <p class="eyebrow">Big-system experience, brought to smaller teams</p>
+          <h2>I know what strong funding infrastructure looks like.</h2>
+          <p>
+            These results are not here to make your organization feel small.
+            They show the level of experience I bring to your next decision.
+          </p>
         </div>
         <div class="outcome-grid">
           <article v-for="outcome in outcomes" :key="outcome.value">
@@ -276,24 +415,14 @@ function closeMenu() {
             <span>{{ outcome.label }}</span>
           </article>
         </div>
-        <blockquote>
-          <SparkIcon />
-          <p>
-            “Behind every gift is a story, a value, and a hope for the world.
-            My work is to honor those stories and connect them to a mission that matters.”
-          </p>
-          <footer>Rebbecca Kyles, Founder</footer>
-        </blockquote>
       </section>
 
-      <section id="partners" class="partners section">
-        <div class="section-heading partners-heading">
-          <div>
-            <p class="eyebrow">Partners served</p>
-            <h2>Rooted in community. Trusted across missions.</h2>
-          </div>
+      <section class="partners section">
+        <div class="section-heading">
+          <p class="eyebrow">Organizations I’ve served</p>
+          <h2>Work grounded in community-based missions.</h2>
           <p>
-            Experience spans survivor services, homelessness, foster youth,
+            My experience includes survivor services, homelessness, foster youth,
             recovery, healthcare, and community development.
           </p>
         </div>
@@ -313,83 +442,51 @@ function closeMenu() {
         </div>
       </section>
 
-      <section id="about" class="about section">
-        <div class="about-portrait" aria-label="Rebbecca Kyles">
-          <div class="portrait-initials">RK</div>
-          <div class="portrait-note">
-            <span>Nonprofit leader</span>
-            <strong>Fundraiser. Strategist. Partner.</strong>
-          </div>
-        </div>
-        <div class="about-copy">
-          <p class="eyebrow">Meet Rebbecca</p>
-          <h2>Fundraising that begins with dignity and ends with possibility.</h2>
-          <p class="large-copy">
-            Rebbecca Kyles is a nonprofit development leader and grant consultant
-            with more than 18 years of experience helping organizations translate
-            urgent missions into sustainable support.
-          </p>
-          <p>
-            Her career began in shelters and crisis programs, alongside children and
-            families in vulnerable moments. That experience still shapes her approach:
-            fundraising is not a transaction, but a relationship built through listening,
-            trust, stewardship, and a clear invitation to make change possible.
-          </p>
-          <p>
-            She has led development for an $8 million human services organization,
-            helped secure more than $2 million in new funding in one year, guided a
-            $7.7 million capital campaign, and served as an interim executive director.
-          </p>
-          <a class="text-link" href="https://www.linkedin.com/in/beckykyles/" target="_blank" rel="noreferrer">
-            Connect on LinkedIn <ArrowIcon />
-          </a>
-        </div>
-      </section>
-
       <section id="contact" class="contact section">
         <div class="contact-copy">
-          <p class="eyebrow">Start a conversation</p>
-          <h2>What could stronger funding make possible?</h2>
+          <p class="eyebrow">Tell me what’s going on</p>
+          <h2>You do not need to have the right words yet.</h2>
           <p>
-            Share where your organization is headed, what is getting in the way,
-            and what kind of support would feel most useful.
+            Tell me about your nonprofit, the funding challenge in front of you,
+            and what would feel different if you had the right support.
           </p>
+          <ul>
+            <li><CheckIcon /> No pressure to choose a package</li>
+            <li><CheckIcon /> No grant jargon required</li>
+            <li><CheckIcon /> A practical response from me</li>
+          </ul>
           <div class="contact-direct">
             <span>Prefer email?</span>
             <a href="mailto:RebbeccaKyles@gmail.com">RebbeccaKyles@gmail.com</a>
           </div>
         </div>
-        <InquiryForm />
+        <div class="form-wrap">
+          <p class="form-intro">A few details will help me understand where to start.</p>
+          <InquiryForm />
+        </div>
       </section>
     </main>
 
     <footer class="site-footer">
       <a class="brand footer-brand" href="#home">
-        <span class="brand-mark">K</span>
-        <span class="brand-copy"><strong>Kyles</strong><small>Grant Studio</small></span>
+        <span class="brand-mark">RK</span>
+        <span class="brand-copy">
+          <strong>Rebbecca Kyles</strong>
+          <small>Grant writing & nonprofit development</small>
+        </span>
       </a>
-      <p>Thoughtful strategy for organizations doing necessary work.</p>
+      <p>Bridging meaningful work and the funding to sustain it.</p>
       <div class="footer-links">
-        <a href="#services">Services</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
+        <a href="#services">How I help</a>
+        <a href="#about">About me</a>
+        <a href="#contact">Let’s talk</a>
       </div>
-      <small>© {{ new Date().getFullYear() }} Kyles Grant Studio</small>
+      <small>© {{ new Date().getFullYear() }} Rebbecca Kyles</small>
     </footer>
 
-    <nav class="mobile-dock" aria-label="Mobile navigation">
-      <a
-        v-for="item in navItems"
-        :key="item.href"
-        :href="item.href"
-        :class="{ active: activeSection === item.href.slice(1) }"
-      >
-        <svg v-if="item.icon === 'home'" viewBox="0 0 24 24"><path d="m4 11 8-7 8 7v9h-6v-6h-4v6H4Z" /></svg>
-        <svg v-else-if="item.icon === 'grid'" viewBox="0 0 24 24"><path d="M4 4h6v6H4Zm10 0h6v6h-6ZM4 14h6v6H4Zm10 0h6v6h-6Z" /></svg>
-        <svg v-else-if="item.icon === 'person'" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" /><path d="M5 21c.7-4.5 3-7 7-7s6.3 2.5 7 7" /></svg>
-        <svg v-else viewBox="0 0 24 24"><path d="M3 5h18v14H3Z" /><path d="m4 6 8 7 8-7" /></svg>
-        <span>{{ item.label }}</span>
-      </a>
-    </nav>
+    <a v-if="!heroVisible && !contactVisible" class="mobile-contact-bar" href="#contact">
+      Tell me about your nonprofit
+      <ArrowIcon />
+    </a>
   </div>
 </template>

@@ -64,13 +64,13 @@ function reset() {
       <div class="quiz-progress" aria-hidden="true">
         <span :style="{ width: `${(step / questions.length) * 100}%` }" />
       </div>
-      <p class="eyebrow">A quick pulse check</p>
+      <p class="eyebrow">One question at a time</p>
       <h3>{{ questions[step].title }}</h3>
       <p>{{ questions[step].detail }}</p>
       <div class="quiz-actions">
         <button type="button" class="button button-dark" @click="answer(true)">
           <CheckIcon />
-          Yes, we do
+          Yes
         </button>
         <button type="button" class="button button-quiet" @click="answer(false)">
           Not yet
@@ -83,7 +83,7 @@ function reset() {
       <p class="eyebrow">Your result</p>
       <h3>{{ result.label }}</h3>
       <p>{{ result.copy }}</p>
-      <a href="#contact" class="button button-coral">Talk through the next step</a>
+      <a href="#contact" class="button button-coral">Ask me about the next step</a>
       <button type="button" class="text-button" @click="reset">Retake check</button>
     </div>
   </div>
