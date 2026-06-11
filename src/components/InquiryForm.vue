@@ -7,7 +7,6 @@ const initialForm = {
   organization: '',
   email: '',
   support: '',
-  timeline: '',
   message: '',
   website: '',
 }
@@ -75,37 +74,24 @@ async function submitInquiry() {
       <small v-if="fieldErrors.email">{{ fieldErrors.email }}</small>
     </label>
 
-    <div class="form-grid">
-      <label>
-        <span>What support do you need?</span>
-        <select v-model="form.support">
-          <option value="" disabled>Choose what sounds closest</option>
-          <option>Not sure where to start</option>
-          <option>Find funding opportunities</option>
-          <option>Write or strengthen a proposal</option>
-          <option>Build grant systems and reporting</option>
-          <option>Development and donor strategy</option>
-        </select>
-        <small v-if="fieldErrors.support">{{ fieldErrors.support }}</small>
-      </label>
-      <label>
-        <span>Ideal timeline</span>
-        <select v-model="form.timeline">
-          <option value="" disabled>Select a timeline</option>
-          <option>Within 30 days</option>
-          <option>1-3 months</option>
-          <option>3-6 months</option>
-          <option>Ongoing support</option>
-          <option>Exploring options</option>
-        </select>
-      </label>
-    </div>
+    <label>
+      <span>What support do you need?</span>
+      <select v-model="form.support">
+        <option value="" disabled>Choose what sounds closest</option>
+        <option>Not sure where to start</option>
+        <option>Find funding opportunities</option>
+        <option>Write or strengthen a proposal</option>
+        <option>Build grant systems and reporting</option>
+        <option>Development and donor strategy</option>
+      </select>
+      <small v-if="fieldErrors.support">{{ fieldErrors.support }}</small>
+    </label>
 
     <label>
       <span>Tell me about your funding goals</span>
       <textarea
         v-model="form.message"
-        rows="5"
+        rows="4"
         placeholder="What does your nonprofit do, and where does funding feel stuck?"
       />
       <small v-if="fieldErrors.message">{{ fieldErrors.message }}</small>
