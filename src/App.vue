@@ -25,16 +25,16 @@ const missions = [
 
 const services = [
   {
-    title: 'Find the right opportunities',
-    copy: 'Focus on grants that fit your mission, capacity, and timing.',
+    title: 'Focus the opportunity',
+    copy: 'Identify grants and fundraising priorities that fit your mission, capacity, and timing.',
   },
   {
-    title: 'Tell a clear, fundable story',
-    copy: 'Turn program knowledge, outcomes, and budgets into a proposal funders can trust.',
+    title: 'Build the fundable case',
+    copy: 'Turn program knowledge, outcomes, and budgets into a story funders can trust.',
   },
   {
-    title: 'Build manageable systems',
-    copy: 'Create practical calendars, reporting, and follow-through your team can maintain.',
+    title: 'Create lasting momentum',
+    copy: 'Put practical grant, donor, and follow-through systems in place for your team.',
   },
 ]
 
@@ -47,17 +47,17 @@ const outcomes = [
 const processSteps = [
   {
     number: '1',
-    title: "Tell me what's going on",
+    title: 'Start with the real challenge',
     copy: 'No grant jargon or polished materials required.',
   },
   {
     number: '2',
-    title: 'Get a practical recommendation',
+    title: 'Find the leverage point',
     copy: "I'll be direct about what will help and what can wait.",
   },
   {
     number: '3',
-    title: 'Move the work forward',
+    title: 'Build funding momentum',
     copy: 'You stay close to the mission while I bring structure and funder perspective.',
   },
 ]
@@ -132,11 +132,11 @@ function closeMenu() {
 <template>
   <div class="site-shell">
     <header class="site-header" :class="{ 'is-scrolled': scrolled }">
-      <a class="brand" href="#home" aria-label="Root and Reach home" @click="closeMenu">
-        <span class="brand-mark">R&amp;R</span>
+      <a class="brand" href="#home" aria-label="The Funding Catalyst home" @click="closeMenu">
+        <span class="brand-mark">FC</span>
         <span class="brand-copy">
-          <strong>Root &amp; Reach</strong>
-          <small>Grant Writing & Major Gifts Consulting</small>
+          <strong>The Funding Catalyst</strong>
+          <small>Grant Writing & Fundraising Strategy for Nonprofits</small>
         </span>
       </a>
 
@@ -147,7 +147,7 @@ function closeMenu() {
       </nav>
 
       <a class="button button-dark header-cta" href="#contact">
-        Tell me what's going on
+        Start a conversation
         <ArrowIcon />
       </a>
 
@@ -172,11 +172,11 @@ function closeMenu() {
     <main>
       <section id="home" class="hero section">
         <div class="hero-copy">
-          <p class="eyebrow eyebrow-pill">Funding strategies for community-based nonprofits</p>
-          <h1>Your community knows what it needs. <em>I help funders understand.</em></h1>
+          <p class="eyebrow eyebrow-pill">Grant writing & fundraising strategy for nonprofits</p>
+          <h1>Your mission has momentum. <em>I help funding catch up.</em></h1>
           <p class="hero-lede">
-            I help small and growing nonprofits find funding, tell their story clearly,
-            and compete for larger opportunities without losing sight of the mission.
+            I help small and growing nonprofits turn community knowledge into clear grant
+            and fundraising strategies that move the right opportunities forward.
           </p>
           <div class="hero-actions">
             <a class="button button-coral" href="#contact">
@@ -193,8 +193,8 @@ function closeMenu() {
             alt="An illustrated bridge connecting a neighborhood community center with a welcoming funding institution"
           />
           <figcaption>
-            <strong>Community work on one side. Funding systems on the other.</strong>
-            <span>I help bridge the gap.</span>
+            <strong>Community insight is the starting point. Funding momentum is the goal.</strong>
+            <span>I help connect the two.</span>
           </figcaption>
         </figure>
       </section>
@@ -202,7 +202,7 @@ function closeMenu() {
       <section class="missions section">
         <div class="missions-copy">
           <p class="eyebrow">Community work comes first</p>
-          <h2>Funding should strengthen the mission, not pull you away from it.</h2>
+          <h2>The best funding strategies start with the people closest to the work.</h2>
           <p>
             My career began in shelters and crisis programs. I understand urgent needs,
             limited staff, and the responsibility community organizations carry every day.
@@ -234,7 +234,7 @@ function closeMenu() {
       <section id="services" class="services section">
         <div class="section-heading">
           <p class="eyebrow">How I help</p>
-          <h2>Practical support for the funding challenge in front of you.</h2>
+          <h2>Clear strategy turns good work into funding momentum.</h2>
         </div>
 
         <div class="service-list">
@@ -250,8 +250,8 @@ function closeMenu() {
 
       <section id="experience" class="experience section">
         <div class="experience-copy">
-          <p class="eyebrow">Experience without the intimidation</p>
-          <h2>I know direct service and the funding systems around it.</h2>
+          <p class="eyebrow">A practical catalyst, not another layer</p>
+          <h2>Experience that helps the right ideas move.</h2>
           <p>
             Across 18+ years, I've worked in direct service, grant compliance,
             development leadership, donor strategy, and nonprofit operations.
@@ -273,7 +273,7 @@ function closeMenu() {
       <section class="process section">
         <div class="section-heading">
           <p class="eyebrow">A simple process</p>
-          <h2>Start with a conversation.</h2>
+          <h2>Find the next step that moves funding forward.</h2>
         </div>
 
         <ol class="process-list">
@@ -289,15 +289,15 @@ function closeMenu() {
 
       <section id="contact" class="contact section">
         <div class="contact-copy">
-          <p class="eyebrow">Tell me what's going on</p>
-          <h2>You do not need to have the right words yet.</h2>
+          <p class="eyebrow">Start with the real challenge</p>
+          <h2>A useful conversation can create momentum.</h2>
           <p>
             Share what your organization does and where funding feels stuck.
             I'll help identify a practical next step.
           </p>
           <ul>
-            <li><span class="contact-bullet" aria-hidden="true" /> No pressure to choose a package</li>
-            <li><span class="contact-bullet" aria-hidden="true" /> No grant jargon required</li>
+            <li><span class="contact-bullet" aria-hidden="true" /> Come as you are</li>
+            <li><span class="contact-bullet" aria-hidden="true" /> Plain language and practical next steps</li>
             <li><span class="contact-bullet" aria-hidden="true" /> A response directly from me</li>
           </ul>
           <a class="contact-email" href="mailto:RebbeccaKyles@gmail.com">
@@ -313,14 +313,14 @@ function closeMenu() {
 
     <footer class="site-footer">
       <a class="brand footer-brand" href="#home">
-        <span class="brand-mark">R&amp;R</span>
+        <span class="brand-mark">FC</span>
         <span class="brand-copy">
-          <strong>Root &amp; Reach</strong>
-          <small>Grant Writing & Major Gifts Consulting</small>
+          <strong>The Funding Catalyst</strong>
+          <small>Grant Writing & Fundraising Strategy for Nonprofits</small>
         </span>
       </a>
-      <p>Rooted in community. Reaching toward funding that lasts.</p>
-      <small>&copy; {{ new Date().getFullYear() }} Root &amp; Reach. Led by Rebbecca Kyles.</small>
+      <p>Turning community insight into funding momentum.</p>
+      <small>&copy; {{ new Date().getFullYear() }} The Funding Catalyst. Led by Rebbecca Kyles.</small>
     </footer>
 
     <a v-if="!heroVisible && !contactVisible" class="mobile-contact-bar" href="#contact">

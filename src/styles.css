@@ -13,6 +13,8 @@
   --paper: #fffaf2;
   --coral: #e27d63;
   --coral-dark: #a85340;
+  --gold: #dfad59;
+  --gold-light: #f5e6c6;
   --sage: #d4ddbd;
   --sage-light: #edf0df;
   --line: rgba(35, 68, 58, 0.14);
@@ -34,7 +36,7 @@ body {
   margin: 0;
   background:
     radial-gradient(circle at 12% 0, rgba(226, 125, 99, 0.11), transparent 19rem),
-    radial-gradient(circle at 90% 18%, rgba(224, 185, 112, 0.12), transparent 24rem),
+    radial-gradient(circle at 90% 18%, rgba(223, 173, 89, 0.17), transparent 24rem),
     var(--cream);
 }
 
@@ -148,6 +150,7 @@ h1 em {
 }
 
 .brand-mark {
+  position: relative;
   display: grid;
   width: 38px;
   height: 38px;
@@ -157,7 +160,19 @@ h1 em {
   color: var(--paper);
   background: var(--ink);
   font-family: var(--serif);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
+}
+
+.brand-mark::after {
+  position: absolute;
+  right: 1px;
+  bottom: 2px;
+  width: 7px;
+  height: 7px;
+  border: 2px solid var(--paper);
+  border-radius: 50%;
+  background: var(--gold);
+  content: '';
 }
 
 .brand-copy {
@@ -177,15 +192,14 @@ h1 em {
 }
 
 .brand-copy small {
-  overflow: hidden;
   margin-top: 4px;
   color: var(--ink-soft);
-  font-size: 0.47rem;
+  font-size: 0.44rem;
   font-weight: 700;
   letter-spacing: 0.07em;
-  text-overflow: ellipsis;
+  line-height: 1.15;
   text-transform: uppercase;
-  white-space: nowrap;
+  white-space: normal;
 }
 
 .desktop-nav,
@@ -309,6 +323,16 @@ h1 em {
   color: var(--ink);
   background: rgba(255, 253, 248, 0.7);
   letter-spacing: 0.07em;
+}
+
+.eyebrow-pill::before {
+  width: 6px;
+  height: 6px;
+  flex: 0 0 auto;
+  margin-right: 7px;
+  border-radius: 50%;
+  background: var(--gold);
+  content: '';
 }
 
 .hero {
@@ -460,7 +484,13 @@ h1 em {
 }
 
 .service-list article > span {
-  color: var(--coral-dark);
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--ink);
+  background: var(--gold-light);
   font-size: 0.67rem;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -489,7 +519,9 @@ h1 em {
   padding: 40px 20px;
   border-radius: 25px;
   color: var(--paper);
-  background: var(--ink);
+  background:
+    radial-gradient(circle at 90% 10%, rgba(223, 173, 89, 0.17), transparent 15rem),
+    var(--ink);
 }
 
 .experience .eyebrow {
@@ -577,7 +609,9 @@ h1 em {
   padding: 42px 20px;
   border-radius: 26px 26px 0 0;
   color: var(--paper);
-  background: var(--ink-deep);
+  background:
+    radial-gradient(circle at 8% 8%, rgba(226, 125, 99, 0.12), transparent 16rem),
+    var(--ink-deep);
 }
 
 .contact .eyebrow {
@@ -609,7 +643,7 @@ h1 em {
   height: 6px;
   flex: 0 0 auto;
   border-radius: 50%;
-  background: #e7a98f;
+  background: var(--gold);
 }
 
 .contact-email {
@@ -782,6 +816,11 @@ h1 em {
     top: 15px;
     width: calc(100% - 32px);
     padding: 10px 12px 10px 15px;
+  }
+
+  .brand-copy small {
+    font-size: 0.48rem;
+    white-space: nowrap;
   }
 
   .hero {

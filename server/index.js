@@ -21,7 +21,7 @@ app.use(cors())
 app.use(express.json({ limit: '100kb' }))
 
 app.get('/api/health', (_request, response) => {
-  response.json({ status: 'ok', service: 'root-and-reach' })
+  response.json({ status: 'ok', service: 'the-funding-catalyst' })
 })
 
 app.post('/api/inquiries', async (request, response) => {
@@ -60,6 +60,6 @@ app.get('/{*splat}', (_request, response) => {
 
 if (process.env.NODE_ENV !== 'test') {
   app.listen(port, () => {
-    console.log(`Root & Reach is running on http://localhost:${port}`)
+    console.log(`The Funding Catalyst is running on http://localhost:${port}`)
   })
 }
