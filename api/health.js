@@ -4,5 +4,5 @@ export default function handler(request, response) {
     return response.status(405).json({ message: 'Method not allowed.' })
   }
 
-  return response.json({ status: 'ok', service: 'kyles-grant-studio' })
+  return response.json({ status: 'ok', service: 'missionward' })
 }

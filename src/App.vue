@@ -133,11 +133,11 @@ function closeMenu() {
 <template>
   <div class="site-shell">
     <header class="site-header" :class="{ 'is-scrolled': scrolled }">
-      <a class="brand" href="#home" aria-label="Rebbecca Kyles home" @click="closeMenu">
-        <span class="brand-mark">RK</span>
+      <a class="brand" href="#home" aria-label="Missionward home" @click="closeMenu">
+        <span class="brand-mark">M</span>
         <span class="brand-copy">
-          <strong>Rebbecca Kyles</strong>
-          <small>Grant writing & nonprofit development</small>
+          <strong>Missionward</strong>
+          <small>Grant Writing & Major Gifts Consulting</small>
         </span>
       </a>
 
@@ -173,7 +173,7 @@ function closeMenu() {
     <main>
       <section id="home" class="hero section">
         <div class="hero-copy">
-          <p class="eyebrow eyebrow-pill">Grant help for community-based nonprofits</p>
+          <p class="eyebrow eyebrow-pill">Funding strategies for community-based nonprofits</p>
           <h1>Your community knows what it needs. <em>I help funders understand.</em></h1>
           <p class="hero-lede">
             I help small and growing nonprofits find funding, tell their story clearly,
@@ -314,14 +314,14 @@ function closeMenu() {
 
     <footer class="site-footer">
       <a class="brand footer-brand" href="#home">
-        <span class="brand-mark">RK</span>
+        <span class="brand-mark">M</span>
         <span class="brand-copy">
-          <strong>Rebbecca Kyles</strong>
-          <small>Grant writing & nonprofit development</small>
+          <strong>Missionward</strong>
+          <small>Grant Writing & Major Gifts Consulting</small>
         </span>
       </a>
       <p>Bridging community work and the funding to sustain it.</p>
-      <small>&copy; {{ new Date().getFullYear() }} Rebbecca Kyles</small>
+      <small>&copy; {{ new Date().getFullYear() }} Missionward. Led by Rebbecca Kyles.</small>
     </footer>
 
     <a v-if="!heroVisible && !contactVisible" class="mobile-contact-bar" href="#contact">

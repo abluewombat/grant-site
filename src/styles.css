@@ -765,12 +765,6 @@ h1 em {
   backdrop-filter: blur(14px);
 }
 
-@media (max-width: 350px) {
-  .site-header .brand-copy small {
-    display: none;
-  }
-}
-
 @media (min-width: 700px) {
   .section {
     width: calc(100% - 48px);

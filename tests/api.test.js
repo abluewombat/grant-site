@@ -120,7 +120,7 @@ test('Vercel inquiry function hands a valid inquiry to Resend', async () => {
 
   process.env.RESEND_API_KEY = 're_test'
   process.env.INQUIRY_TO_EMAIL = 'rebecca@example.org'
-  process.env.INQUIRY_FROM_EMAIL = 'Kyles Grant Studio <inquiries@example.org>'
+  process.env.INQUIRY_FROM_EMAIL = 'Missionward <inquiries@example.org>'
   globalThis.fetch = async (url, options) => {
     resendRequest = { url, options }
     return new Response(JSON.stringify({ id: 'email_test' }), { status: 200 })
