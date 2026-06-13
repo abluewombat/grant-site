@@ -1,7 +1,6 @@
 <script setup>
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import ArrowIcon from './components/ArrowIcon.vue'
-import CheckIcon from './components/CheckIcon.vue'
 import InquiryForm from './components/InquiryForm.vue'
 
 const menuOpen = ref(false)
@@ -133,10 +132,10 @@ function closeMenu() {
 <template>
   <div class="site-shell">
     <header class="site-header" :class="{ 'is-scrolled': scrolled }">
-      <a class="brand" href="#home" aria-label="Missionward home" @click="closeMenu">
-        <span class="brand-mark">M</span>
+      <a class="brand" href="#home" aria-label="Root and Reach home" @click="closeMenu">
+        <span class="brand-mark">R&amp;R</span>
         <span class="brand-copy">
-          <strong>Missionward</strong>
+          <strong>Root &amp; Reach</strong>
           <small>Grant Writing & Major Gifts Consulting</small>
         </span>
       </a>
@@ -297,9 +296,9 @@ function closeMenu() {
             I'll help identify a practical next step.
           </p>
           <ul>
-            <li><CheckIcon /> No pressure to choose a package</li>
-            <li><CheckIcon /> No grant jargon required</li>
-            <li><CheckIcon /> A response directly from me</li>
+            <li><span class="contact-bullet" aria-hidden="true" /> No pressure to choose a package</li>
+            <li><span class="contact-bullet" aria-hidden="true" /> No grant jargon required</li>
+            <li><span class="contact-bullet" aria-hidden="true" /> A response directly from me</li>
           </ul>
           <a class="contact-email" href="mailto:RebbeccaKyles@gmail.com">
             RebbeccaKyles@gmail.com
@@ -314,14 +313,14 @@ function closeMenu() {
 
     <footer class="site-footer">
       <a class="brand footer-brand" href="#home">
-        <span class="brand-mark">M</span>
+        <span class="brand-mark">R&amp;R</span>
         <span class="brand-copy">
-          <strong>Missionward</strong>
+          <strong>Root &amp; Reach</strong>
           <small>Grant Writing & Major Gifts Consulting</small>
         </span>
       </a>
-      <p>Bridging community work and the funding to sustain it.</p>
-      <small>&copy; {{ new Date().getFullYear() }} Missionward. Led by Rebbecca Kyles.</small>
+      <p>Rooted in community. Reaching toward funding that lasts.</p>
+      <small>&copy; {{ new Date().getFullYear() }} Root &amp; Reach. Led by Rebbecca Kyles.</small>
     </footer>
 
     <a v-if="!heroVisible && !contactVisible" class="mobile-contact-bar" href="#contact">
