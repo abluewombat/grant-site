@@ -25,16 +25,16 @@ const missions = [
 
 const services = [
   {
-    title: 'Focus the opportunity',
-    copy: 'Identify grants and fundraising priorities that fit your mission, capacity, and timing.',
+    title: 'Grant strategy & proposals',
+    copy: 'Grant research, full proposal writing, and thoughtful editing for competitive submissions.',
   },
   {
-    title: 'Build the fundable case',
-    copy: 'Turn program knowledge, outcomes, and budgets into a story funders can trust.',
+    title: 'Grant management',
+    copy: 'Reporting, compliance, renewals, and practical systems that keep funded work on track.',
   },
   {
-    title: 'Create lasting momentum',
-    copy: 'Put practical grant, donor, and follow-through systems in place for your team.',
+    title: 'Fundraising strategy',
+    copy: 'Major gifts and donor strategy, board support, and capital campaign planning.',
   },
 ]
 
@@ -47,18 +47,18 @@ const outcomes = [
 const processSteps = [
   {
     number: '1',
-    title: 'Start with the real challenge',
-    copy: 'No grant jargon or polished materials required.',
+    title: 'Send a short inquiry',
+    copy: "Tell me what feels stuck. I'll respond personally within 24 hours.",
   },
   {
     number: '2',
-    title: 'Find the leverage point',
-    copy: "I'll be direct about what will help and what can wait.",
+    title: 'Have a free introductory call',
+    copy: "We'll talk through your goals, immediate needs, and whether I'm the right fit.",
   },
   {
     number: '3',
-    title: 'Build funding momentum',
-    copy: 'You stay close to the mission while I bring structure and funder perspective.',
+    title: 'Receive a customized scope',
+    copy: "If we're a fit, I'll recommend the support and next steps that match your organization.",
   },
 ]
 
@@ -175,7 +175,7 @@ function closeMenu() {
           <p class="eyebrow eyebrow-pill">Grant writing & fundraising strategy for nonprofits</p>
           <h1>Your mission has momentum. <em>I help funding catch up.</em></h1>
           <p class="hero-lede">
-            I help small and growing nonprofits turn community knowledge into clear grant
+            I help established midsize nonprofits turn community knowledge into clear grant
             and fundraising strategies that move the right opportunities forward.
           </p>
           <div class="hero-actions">
@@ -213,7 +213,7 @@ function closeMenu() {
         </div>
 
         <div class="partner-wrap">
-          <p>Organizations I've served</p>
+          <p>Selected nonprofit experience</p>
           <div class="partner-grid">
             <a
               v-for="partner in partners"
@@ -246,6 +246,19 @@ function closeMenu() {
             </div>
           </article>
         </div>
+
+        <aside class="fit-note">
+          <div>
+            <p class="eyebrow">Best fit</p>
+            <h3>Established midsize nonprofits ready for focused funding support.</h3>
+          </div>
+          <p>
+            I work remotely with organizations nationwide with annual operating
+            budgets between $800,000 and $8 million. I do not currently serve startup
+            nonprofits, fiscally sponsored projects, or organizations with operating
+            budgets below $800,000.
+          </p>
+        </aside>
       </section>
 
       <section id="experience" class="experience section">
@@ -253,7 +266,7 @@ function closeMenu() {
           <p class="eyebrow">A practical catalyst, not another layer</p>
           <h2>Experience that helps the right ideas move.</h2>
           <p>
-            Across 18+ years, I've worked in direct service, grant compliance,
+            I'm Rebbecca Kyles. With 15 years in nonprofits, I've worked in direct service, grant compliance,
             development leadership, donor strategy, and nonprofit operations.
             I bring large-system experience to smaller teams in a practical, personal way.
           </p>
@@ -262,11 +275,14 @@ function closeMenu() {
           </a>
         </div>
 
-        <div class="outcome-grid" aria-label="Selected funding results">
+        <div class="outcomes">
+          <p>Selected career results from nonprofit leadership roles</p>
+          <div class="outcome-grid" aria-label="Selected funding results">
           <article v-for="outcome in outcomes" :key="outcome.value">
             <strong>{{ outcome.value }}</strong>
             <span>{{ outcome.label }}</span>
           </article>
+          </div>
         </div>
       </section>
 
@@ -293,12 +309,13 @@ function closeMenu() {
           <h2>A useful conversation can create momentum.</h2>
           <p>
             Share what your organization does and where funding feels stuck.
-            I'll help identify a practical next step.
+            I'll respond within 24 hours and, if it looks like a fit, we'll schedule
+            a free introductory call.
           </p>
           <ul>
             <li><span class="contact-bullet" aria-hidden="true" /> Come as you are</li>
-            <li><span class="contact-bullet" aria-hidden="true" /> Plain language and practical next steps</li>
-            <li><span class="contact-bullet" aria-hidden="true" /> A response directly from me</li>
+            <li><span class="contact-bullet" aria-hidden="true" /> Customized support, not preset packages</li>
+            <li><span class="contact-bullet" aria-hidden="true" /> Your details are used only to respond to your inquiry</li>
           </ul>
           <a class="contact-email" href="mailto:RebbeccaKyles@gmail.com">
             RebbeccaKyles@gmail.com

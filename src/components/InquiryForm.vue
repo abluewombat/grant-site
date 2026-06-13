@@ -63,7 +63,7 @@ async function submitInquiry() {
       </label>
       <label>
         <span>Organization</span>
-        <input v-model="form.organization" type="text" autocomplete="organization" placeholder="Nonprofit or initiative" />
+        <input v-model="form.organization" type="text" autocomplete="organization" placeholder="Established nonprofit" />
         <small v-if="fieldErrors.organization">{{ fieldErrors.organization }}</small>
       </label>
     </div>
@@ -79,10 +79,13 @@ async function submitInquiry() {
       <select v-model="form.support">
         <option value="" disabled>Choose what sounds closest</option>
         <option>Not sure where to start</option>
-        <option>Find funding opportunities</option>
-        <option>Write or strengthen a proposal</option>
-        <option>Build grant systems and reporting</option>
-        <option>Development and donor strategy</option>
+        <option>Grant research and opportunity strategy</option>
+        <option>Full proposal writing or editing</option>
+        <option>Grant reporting, compliance, or renewals</option>
+        <option>Major gifts and donor strategy</option>
+        <option>Board fundraising support</option>
+        <option>Capital campaign strategy</option>
+        <option>Something else</option>
       </select>
       <small v-if="fieldErrors.support">{{ fieldErrors.support }}</small>
     </label>
@@ -101,6 +104,8 @@ async function submitInquiry() {
       {{ status === 'submitting' ? 'Sending...' : 'Send Rebbecca a note' }}
       <ArrowIcon v-if="status !== 'submitting'" />
     </button>
+
+    <p class="form-privacy">Rebbecca responds personally within 24 hours.</p>
 
     <p v-if="responseMessage" class="form-status" :class="`is-${status}`" aria-live="polite">
       {{ responseMessage }}
