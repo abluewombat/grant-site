@@ -22,6 +22,7 @@ export default async function handler(request, response) {
   const errors = validateInquiry(inquiry)
 
   if (errors.length) {
+    console.warn('Inquiry validation failed:', errors.map(({ field }) => field).join(', '))
     return response.status(400).json({
       message: 'Please check the highlighted details.',
       errors,

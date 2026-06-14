@@ -35,6 +35,7 @@ app.post('/api/inquiries', async (request, response) => {
   }
 
   if (errors.length) {
+    console.warn('Inquiry validation failed:', errors.map(({ field }) => field).join(', '))
     return response.status(400).json({
       message: 'Please check the highlighted details.',
       errors,

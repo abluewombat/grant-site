@@ -24,8 +24,8 @@ export function validateInquiry(inquiry) {
   if (!inquiry.support) {
     errors.push({ field: 'support', message: 'Please choose the support you need.' })
   }
-  if (inquiry.message.length < 20) {
-    errors.push({ field: 'message', message: 'Tell us a little more about your funding goals.' })
+  if (!inquiry.message) {
+    errors.push({ field: 'message', message: 'Please tell us briefly about your funding goals.' })
   }
 
   return errors

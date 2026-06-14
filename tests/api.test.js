@@ -50,6 +50,18 @@ test('shared inquiry validation accepts a complete submission', () => {
   assert.equal(inquiry.email, 'rebbecca@example.org')
 })
 
+test('shared inquiry validation accepts a short inquiry message', () => {
+  const inquiry = normalizeInquiry({
+    name: 'Judi Cogen',
+    organization: 'Community Impact Network',
+    email: 'jicogen@gmail.com',
+    support: 'Not sure where to start',
+    message: 'Testing',
+  })
+
+  assert.deepEqual(validateInquiry(inquiry), [])
+})
+
 test('email content escapes visitor-provided HTML', () => {
   const email = buildInquiryEmail({
     name: '<Rebbecca>',
